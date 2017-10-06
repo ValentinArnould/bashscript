@@ -1,0 +1,6 @@
+#! /bin/bash
+
+read chaine1;
+read chaine2;
+chaine3=$chaine1$chaine2;
+echo $chaine3;

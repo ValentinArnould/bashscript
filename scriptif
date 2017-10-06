@@ -1,0 +1,13 @@
+#! /bin/bash
+
+read age;
+if (( "$age" < 18 ))
+then
+    echo "désolé, tu es trop jeune";
+else
+if (( $age == 20 ))
+then
+    echo "tu as 20 ans, ça se fête !";
+fi
+   echo "allez, cul sec !";
+fi

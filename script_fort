@@ -1,0 +1,10 @@
+#! /bin/bash
+
+ echo 'veux tu y aller : ';
+select yn in "oui" "non" "maybe";do
+  case $yn in
+    oui ) echo "hell ye"; break;;
+    non ) exit;;
+    maybe ) echo 'haha doom';
+  esac
+done

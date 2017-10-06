@@ -1,0 +1,57 @@
+#! /bin/bash
+
+echo "quand est tu né ?"; #demande le jour, le mois et l'année de naissance
+echo "jour (1 à 31)";
+read jourq;
+echo "mois (1 à 12)";
+read moisq;
+echo "année (tu sais taper une année)";
+read anneeq;
+
+jourd=$(date '+%d'); #prend la date d'aujourd'hui
+moisd=$(date '+%m');
+anneed=$(date '+%Y');
+
+annee=$(($anneed-$anneeq)); #soustrait les années
+
+if(($moisq > $moisd))	    #si le mois est plus grand
+then			    #ajuste, enlève un an et ajoute 12 mois
+    annee=$(($annee - 1));
+    mois=$(($moisd - $moisq + 12));
+else
+    mois=$(($moisd - $moisq));
+fi
+
+if(($jourq > $jourd))
+then
+    if(($moisd == 2))
+    then
+        mois=$(($mois - 1));
+        jour=$(($jourd - $jourq + 28));
+    elif(($moisd == 4 || $moisd == 6 || $moisd == 9 || $moisd == 11))
+    then
+        mois=$(($mois - 1));
+        jour=$(($jourd - $jourq + 30));
+    elif (($moisd == 1 || $moisd == 3 || $moisd == 5 || $moisd == 7 || $moisd == 8 || $moisd == 10 || $moisd == 12))
+    then
+        mois=$(($mois - 1));
+        jour=$(($jourd - $jourq + 31));
+    fi
+    if(($mois < 0))
+    then
+        annee=$(($annee - 1));
+        mois=$(($mois + 12));
+    fi
+    if(($annee < 0))
+    then
+        echo "Tu n'es pas encore né, reviens plus tard";
+        exit 0;
+    fi
+else
+    jour=$(($jourd - $jourq));
+fi
+
+echo 'tu as ' $annee 'ans, ' $mois 'mois et ' $jour 'jours !';
+
+#dateuh=$ date +"%F";
+#echo $dateuh;

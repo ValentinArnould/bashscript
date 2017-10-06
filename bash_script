@@ -1,0 +1,132 @@
+#! /bin/bash
+
+#agence qui vend des meubles
+
+declare -a meuble;
+
+meuble[10]="mepeprel";meuble[20]="mepeprelte";
+meuble[30]="mepeprme";meuble[40]="mepeprfi";
+meuble[50]="mepedelo";meuble[60]="mepedeel";
+meuble[70]="mepedefi";
+
+meuble[80]="memoprel";meuble[90]="memoprelte";
+meuble[100]="memoprme";meuble[110]="memoprfi";
+meuble[120]="memodelo";meuble[130]="memodeel";
+meuble[140]="memodefi";
+
+meuble[150]="megrprel";meuble[160]="megrprelte";
+meuble[170]="megrprme";meuble[180]="megrprfi";
+meuble[190]="megrdelo";meuble[200]="megrdeel";
+meuble[210]="megrdefi";
+
+a1="z"; a2="z"; a3="z"; a4="z"; a5="z";
+
+function taille {
+  if(($a1 != "z"))
+  then
+    echo "déjà fait";
+    break;
+  else
+    echo "choisissez : ";
+    select a1 in petit moyen grand;
+    do
+    case $a1 in
+      petit ) a1="p"; break;;
+      moyen ) a1="m"; break;;
+      grand ) a1="g"; break;;
+    esac
+    done
+  fi
+}
+
+function couleur {
+  if(($a5 != "z"))
+  then
+    echo "déjà fait";
+    break;
+  else
+    echo "choisissez : ";
+    select a5 in fushia cyan kaki moche;
+    do
+    case $a5 in
+      fushia ) a5="f"; break;;
+      cyan ) a5="c"; break;;
+      kaki ) a5="k"; break;;
+      moche ) a5="m"; break;;
+    esac
+    done
+  fi
+}
+
+function usage {
+  if(($a2 != "z"))
+  then
+    echo "déjà fait";
+    break;
+  else
+    echo "choisissez : ";
+    select a2 in pratique décoratif;
+    do
+    case $a2 in
+      pratique ) a2="p"; break;;
+      décoratif ) a2="d"; break;;
+    esac
+    done
+    if(($a2 == p))
+    then
+      select a3 in électronique mécanique;
+      do
+      case $a3 in
+        électronique ) a3="e"; break;;
+        mécanique ) a3="m"; break;;
+        fixe ) a3="f"; break;;
+      esac
+      done
+    if(($a3 == e))
+    then
+      select a4 in technologique normal;
+      do
+      case $a4 in
+        technologique ) a4="t"; break;;
+        normal ) a4=""; break;;
+      esac
+      done
+    fi
+    elif(($a2 == d))
+    then
+      select a3 in lol électronique fixe;
+      do
+      case $a3 in
+        lol ) a3="l"; break;;
+        électronique ) a3="e"; break;;
+        fixe )a3="f"; break;;
+      esac
+      done
+    fi
+  fi
+}
+
+#while((1 == 1))
+#do
+#  read hey;
+#  echo ${meuble[$hey *10]};
+#done
+
+read -n 1 -s -r -p "Bonjour magasin (appuyer sur une touche)";
+
+echo "démarrer le choix : ";
+
+while (($a1 == "z" + $a2 == "z"))
+do
+select ho in taille couleur usage;
+do
+case $ho in
+  taille ) taille; break;;
+  couleur ) couleur; break;;
+  usage ) usage; break;;
+esac
+done
+done
+cho=$(( ( RANDOM % 21 )  + 1 ));
+cho=$(( cho * 10 ));
+echo "merci, votre $a1 meuble s'appelle ${meuble[$cho]}, venez le chercher. =)";
