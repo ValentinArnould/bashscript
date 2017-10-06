@@ -1,5 +1,7 @@
 #! /bin/bash
 
+#ce programme est cool
+
 echo "quand est tu né ?"; #demande le jour, le mois et l'année de naissance
 echo "jour (1 à 31)";
 read jourq;
